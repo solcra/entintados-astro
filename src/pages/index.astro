@@ -3,6 +3,7 @@ import '../styles/global.css';
 // Component Imports
 import Button from '../components/Button.astro';
 import Header from '../components/Header.astro';
+import CardProducto from '../components/CardProducto.astro';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -19,10 +20,10 @@ import Header from '../components/Header.astro';
 
 	<body>
 		<Header></Header>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro! Carlos</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-			<a href="/productos" class="p-4 underline">Productos</a>
+		<div class="flex flex-row max-w-screen-xl">
+			<div>
+				<CardProducto></CardProducto>
+			</div>
 		</div>
 	</body>
 </html>
