@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+const posts =  (await getCollection('productos')).sort((a, b) => a.data.order - b.data.order);
+console.log(posts);
+console.log('Posts:', posts);
+console.log(await getCollection('productos'));
+---
+<html>
+
+<head>
+    <title>Productos</title>   
+</head>
+<body>
+    <h1>Productos</h1>
+    <ul>car
+        {posts.map((post) => (
+            <li>care
+                <a href={`/productos/${post.slug}`}>{post.data.title}</a>
+            </li>
+        ))}
+    </ul>
+</html>
