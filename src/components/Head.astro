@@ -1,0 +1,60 @@
+---
+export interface Props {
+  title?: string;
+  titleSeo?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+}
+
+const { title = "Astro + TailwindCSS",
+        titleSeo = "Entintados - Arte en Tinta",
+        description = "Sitio creado con Astro y Tailwind para un diseño rápido, moderno y optimizado.",
+        url = "https://entintados.com.co/",
+        image = "/favicon.png" } = Astro.props;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- SEO Básico -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph (para compartir en redes sociales) -->
+  <meta property="og:title" content={titleSeo} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={`https://entintados.com.co${image}`} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={titleSeo} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`https://entintados.com.co${image}`}/>
+
+  <!-- Google Search Console (verificación) -->
+  <meta name="google-site-verification" content="TU_CODIGO_VERIFICACION" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M5LHSLNX');</script>
+<!-- End Google Tag Manager -->
+ <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5LHSLNX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</head>

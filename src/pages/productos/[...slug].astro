@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Producto from '../../layouts/Producto.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.vue';
 
 export async function getStaticPaths() {
   const productos = await getCollection('productos');
@@ -18,4 +19,9 @@ const { Content } = await render(entry);
   <p>{entry.data.description}</p>
   {entry.data.image && <img src={entry.data.image} alt={entry.data.title} />}
 	<Content />
+  <WhatsAppButton
+    client:load
+    phoneNumber="573178287981" 
+    productTitle={entry.data.title}
+  />
 </Producto>

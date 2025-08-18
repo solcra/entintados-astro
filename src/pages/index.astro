@@ -4,6 +4,8 @@ import '../styles/global.css';
 import Button from '../components/Button.astro';
 import Header from '../components/Header.astro';
 import CardProducto from '../components/CardProducto.astro';
+import Banner from '../components/Banner.astro';
+import Hade from '../components/Head.astro';
 
 const allPosts = await Astro.glob('../content/productos/*.md')
 
@@ -12,25 +14,43 @@ const allPosts = await Astro.glob('../content/productos/*.md')
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
-
+	
+	<Hade 
+		title="Entintados"
+		titleSeo="Compra termos y mugs con diseños artísticos exclusivos"
+		description="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
+		image='/images/entintados.jpg'
+		>
+	</Head>
 	<body>
 		<Header></Header>
-		<div class="flex flex-row max-w-screen-xl">
-			<div>
+		<Banner
+			url_imagen="/images/banner.jpg"
+			title="<span>Diseño con identidad:</span> <br><span class='font-bold'>arte que se vive</span>">
+		</Banner>
+		<section class="w-full flex justify-center items-center py-20 bg-white">
+			<div class="w-1/2 text-center px-5">
+				<p class="text-4xl font-light text-gray-900 leading-snug">
+				<span class="block text-5xl font-bold mb-4">¡Hola!</span>
+				Mi nombre es Catherine, soy la mente creativa detrás de 
+				<span class="italic">Entintados</span>, y estoy lista para plasmar 
+				tus ideas en un termo único!
+				</p>
+			</div>
+		</section>
+		<section class="max-w-7xl mx-auto px-4 py-10">
+			<h2 class="text-3xl font-bold text-center mb-8">Nuestros Productos</h2>
+			
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+				
 				{allPosts.map((item) => (
+					
 					<CardProducto 
-						title={item?.frontmatter?.title} 
-						time={item?.frontmatter?.pubDate} 
+						title={item?.frontmatter?.title}
+						image={item?.frontmatter?.image}
 					/>
 				))}
 			</div>
-		</div>
+		</section>
 	</body>
 </html>
