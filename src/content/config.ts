@@ -6,6 +6,9 @@ const productos = defineCollection({
     description: z.string(),
     image: z.string(),
     order: z.number(),
+    rutaUrl: z.string(),
+    titleSeo: z.string(),
+    descripcionSeo: z.string(),
     layout: z.string().optional(), // por si lo quieres en el frontmatter
   }),
 });

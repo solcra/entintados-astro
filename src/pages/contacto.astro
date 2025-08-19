@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+// Component Imports
+import Hade from '../components/Head.astro';
+import Header from '../components/Header.astro';
+
+---
+<html lang="es-CO">
+	<Hade 
+		title="Contáctanos - Entintados"
+		titleSeo="Contáctanos | Diseñadora de Termos Personalizados | Entintados"
+		description="¿Quieres un termo único? Escríbeme y hagamos realidad tu idea. En Entintados puedes personalizar tu termo con ilustraciones originales y creativas que reflejan tu estilo. ¡Hablemos!"
+		image='/images/entintados.jpg'
+		>
+	</Head>
+	<body class="overflow-x-hidden m-0 p-0 min-h-screen">
+        <Header></Header>
+        <section class="w-full flex justify-center items-center py-20 bg-white px-4 md:px-0">
+            <div class="max-w-4xl text-center md:text-left">
+                
+                <!-- Título -->
+                <h1 class="text-3xl md:text-5xl font-light leading-tight mb-8">
+                    Contáctanos
+                </h1>
+                <form onsubmit="sendToWhatsApp(event)" class="space-y-4">
+                    <input 
+                        type="text" 
+                        id="name" 
+                        placeholder="Tu nombre" 
+                        class="border p-2 w-full rounded" 
+                        required 
+                    />
+                    <textarea 
+                        id="message" 
+                        placeholder="Escribe tu mensaje" 
+                        class="border p-2 w-full rounded" 
+                        required
+                    ></textarea>
+
+                    <div class="flex justify-end">
+                        <button 
+                        type="submit" 
+                        class="bg-teal-700 text-white px-4 py-2 rounded cursor-pointer 
+                                hover:bg-teal-800 transition-colors duration-300">
+                        Enviar por WhatsApp
+                        </button>
+                    </div>
+                </form>
+
+                <script is:global>
+                    function sendToWhatsApp(e) {
+                        e.preventDefault();
+                        const name = document.getElementById("name").value;
+                        const message = document.getElementById("message").value;
+
+                        const phone = "+573178287981"; // tu número en formato internacional
+                        const text = `Hola, soy ${name}. ${message}`;
+                        const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+                        window.open(url, "_blank");
+                    }
+                </script>
+            </div>
+        </section>
+    </body>
+</html>

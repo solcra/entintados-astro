@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+// Component Imports
+import Hade from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Banner from '../components/Banner.astro';
+
+---
+<html lang="es-CO">
+	<Hade 
+		title="Acerca de - Entintados"
+		titleSeo="Acerca de Catherine Isaza | Diseñadora de Termos Personalizados | Entintados"
+		description="Catherine Isaza transforma momentos cotidianos en experiencias artísticas. Termos personalizados con ilustraciones originales que reflejan tu personalidad única. Descubre mi proceso creativo."
+		image='/images/entintados.jpg'
+		>
+	</Head>
+	<body class="overflow-x-hidden m-0 p-0 min-h-screen">
+        <Header></Header>
+        <Banner
+			url_imagen="/images/banner-acerca-de.jpg"
+			title="">
+		</Banner>
+        <section class="w-full flex justify-center items-center py-20 bg-white px-4 md:px-0">
+            <div class="max-w-4xl text-center md:text-left">
+                
+                <!-- Título -->
+                <h1 class="text-3xl md:text-5xl font-light leading-tight mb-8">
+                El arte siempre fue mi refugio.
+                </h1>
+                
+                <!-- Texto -->
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                Soy <span class="font-semibold">Catherine Isaza Rodríguez</span>, diseñadora gráfica y estudiante de marketing y publicidad, pero antes que cualquier título, soy una persona que encontró en el arte su lenguaje universal. Para mí, dibujar no es solo crear: es terapia, es conexión, es la forma más honesta de expresar quien soy.
+                </p>
+                
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                Mi amor por la tinta negra comenzó con las ilustraciones medievales. Hay algo hipnótico en esos trazos antiguos, en esa elegancia atemporal que me enamoró desde el primer momento. Y aunque disfruto cuando el color se cuela en mis diseños —transformando y elevando cada ilustración—, mi corazón siempre regresa a donde todo comenzó: a la pureza de la tinta negra.
+                </p>
+                
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                <span class="font-semibold">Entintados</span> nació de ese viaje personal.
+                </p>
+                
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+                Aquí no encontrarás solo un termo personalizado. Cada pieza lleva intención, dedicación y un pedacito de historia. Cada trazo tiene carácter, cada diseño abraza una emoción.  
+                Porque creo que hasta en lo cotidiano —ese momento de pausa con tu café, esa bebida que acompaña tu rutina— puede vivir el arte.  
+                Y ese es mi regalo para ti: <span class="italic">convertir lo simple en extraordinario.</span>
+                </p>
+
+            </div>
+        </section>
+    </body>
+</html>

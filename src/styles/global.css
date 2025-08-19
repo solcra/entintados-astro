@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+html {
+  overflow-y: scroll; /* siempre muestra el scroll */
+}
+
 * {
     font-family: "Source Serif 4", serif;
 }
