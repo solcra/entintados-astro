@@ -3,15 +3,18 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  url?: string;
 }
 
-const { title, image, description } = Astro.props;
+const { title, image, url ,description } = Astro.props;
 ---
-<div class="bg-white rounded-2xl shadow-md overflow-hidden">
-  <img 
-    src={image}
-    alt={title}  
-    class="w-full aspect-square object-cover"
-  >
-  <h2 class="text-xl font-semibold text-center py-4">{title}</h2>
-</div>
+<a href={url} class="block hover:scale-105 transition-transform duration-300">
+  <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+    <img 
+      src={image}
+      alt={title}  
+      class="w-full aspect-square object-cover"
+    >
+    <h2 class="text-xl font-semibold text-center py-4">{title}</h2>
+  </div>
+</a>

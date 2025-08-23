@@ -1,15 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
+import Hade from '../../components/Head.astro';
+
 const posts =  (await getCollection('productos')).sort((a, b) => a.data.order - b.data.order);
 console.log(posts);
 console.log('Posts:', posts);
 console.log(await getCollection('productos'));
 ---
 <html>
-
-<head>
-    <title>Productos</title>   
-</head>
+    <Hade 
+		title="Entintados - 404"
+		titleSeo="Compra termos y mugs con diseños artísticos exclusivos"
+		descripcionSeo="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
+		image='images/entintados.jpg'
+		>
+	</Head>
 <body>
     <h1>Productos</h1>
     <ul>car

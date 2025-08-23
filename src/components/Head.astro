@@ -2,40 +2,44 @@
 export interface Props {
   title?: string;
   titleSeo?: string;
-  description?: string;
+  descripcionSeo?: string;
   url?: string;
   image?: string;
 }
 
 const { title = "Astro + TailwindCSS",
         titleSeo = "Entintados - Arte en Tinta",
-        description = "Sitio creado con Astro y Tailwind para un diseño rápido, moderno y optimizado.",
+        descripcionSeo = "Sitio creado con Astro y Tailwind para un diseño rápido, moderno y optimizado.",
         url = "https://entintados.com.co/",
         image = "/favicon.png" } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="icon" type="image/svg+xml" href="/favicon.png" />
   <meta name="generator" content={Astro.generator} />
 
   <!-- SEO Básico -->
   <title>{title}</title>
-  <meta name="description" content={description} />
+  <meta name="description" content={descripcionSeo} />
+  <meta name="title" content={title} />
+  <link rel="canonical" href={canonicalUrl.toString()} />
 
   <!-- Open Graph (para compartir en redes sociales) -->
   <meta property="og:title" content={titleSeo} />
-  <meta property="og:description" content={description} />
+  <meta property="og:description" content={descripcionSeo} />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content={url} />
-  <meta property="og:image" content={`https://entintados.com.co${image}`} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={`${Astro.site}${image}`} />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={titleSeo} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={`https://entintados.com.co${image}`}/>
+  <meta name="twitter:description" content={descripcionSeo} />
+  <meta name="twitter:image" content={`${Astro.site}${image}`}/>
 
   <!-- Google Search Console (verificación) -->
   <meta name="google-site-verification" content="TU_CODIGO_VERIFICACION" />

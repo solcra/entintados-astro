@@ -5,8 +5,6 @@ import Hade from '../../components/Head.astro';
 import ProductSelector from '../../components/ProductSelector.vue';
 import Header from '../../components/Header.astro';
 
-const nombreDiseno = 'liebre_de_la_suerte'; 
-
 export async function getStaticPaths() {
   const productos = await getCollection('productos');
   return productos.map((entry) => ({
@@ -18,24 +16,33 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
+const {
+  title,
+  description,
+  image,
+  rutaUrl,
+  titleSeo,
+  descripcionSeo,
+  order,
+} = entry.data;
+
 ---
 <html lang="es-CO">
 	<Hade 
-		title="Entintados"
-		titleSeo="Compra termos y mugs con diseños artísticos exclusivos"
-		description="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
-		image='/images/entintados.jpg'
+		title={title}
+		titleSeo={titleSeo }
+    descripcionSeo={descripcionSeo}
+		image=`images/productos/${rutaUrl}/${image}`
 		>
 	</Head>
 	<body class="overflow-x-hidden m-0 p-0 min-h-screen">
     <Header></Header>
-    <Content />
-    
       <ProductSelector
         client:load
-        nombreDiseno={nombreDiseno}
-        titulo="Termos personalizados"
-        descripcion="Elige tu modelo favorito"
-      />
+        titulo={title}
+        descripcion={description}
+        rutaUrl={rutaUrl}
+        image={image}
+      ><Content /></ProductSelector>
   </body>
 </html>

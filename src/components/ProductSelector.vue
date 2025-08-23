@@ -1,19 +1,22 @@
 <template>
   <div class="p-6 max-w-2xl mx-auto">
-    <h1 class="text-2xl font-bold mb-2">{{ titulo }}</h1>
-    <p class="mb-4 text-gray-600">{{ descripcion }}</p>
-
+    <h1 class="text-2xl font-bold mb-2">{{ props.titulo }}</h1>
+        
+    <!-- Aquí metes lo que venga de Astro -->
+    <div class="prose mb-6">
+      <slot></slot>
+    </div>
     <!-- Imagen principal -->
     <div class="mb-4">
       <img 
         v-if="imagenSeleccionada"
-        :src="`/images/productos/${nombreDiseno}/${imagenSeleccionada.archivo}`" 
+        :src="`/images/productos/${props.rutaUrl}/${imagenSeleccionada.archivo}`" 
         :alt="imagenSeleccionada.titulo" 
         class="rounded-xl shadow-md w-full" 
       />
       <img 
         v-else
-        src="/images/productos/liebre_de_la_suerte.webp" 
+        :src="`/images/productos/${props.rutaUrl}/${props.image}`"
         alt="Imagen de diseño" 
         class="rounded-xl shadow-md w-full" 
       />
@@ -34,6 +37,17 @@
           {{ modelo.titulo }}
         </option>
       </select>
+    </div>
+
+    <!-- Botón WhatsApp -->
+    <div class="mt-6">
+      <button 
+        v-if="imagenSeleccionada"
+        @click="sendToWhatsApp"
+        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg w-full transition"
+      >
+        📩 Consultar por WhatsApp
+      </button>
     </div>
 
     <!-- Descripción -->
@@ -60,9 +74,12 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-const nombreDiseno = 'liebre_de_la_suerte'
-const titulo = 'Termos personalizados'
-const descripcion = 'Elige tu modelo favorito con diseño de liebre.'
+const props = defineProps({
+  titulo: String,
+  descripcion: String,
+  rutaUrl: String,
+  image: String
+})
 
 const modelos = [
   { 
@@ -73,7 +90,7 @@ const modelos = [
   },
   { 
     titulo: 'Termo con pitillo', 
-    archivo: 'termo-con-pitillo.webp', 
+    archivo: 'termo-pitillo-ajustable.webp', 
     descripcion: 'Hecho en aluminio de alta calidad, ideal para mantener tus bebidas favoritas a la temperatura perfecta durante tus actividades diarias, entrenamientos matutinos... y seguir conquistando cada momento con energía y estilo.' ,
     detalles: 'Resiste bebidas frías, conservándolas frescas. No apto para usar en el congelador - Tapa y pitillo plásticos - Su pitillo se abre y cierra fácilmente - Tiene un sistema de agarre muy práctico que te permite llevarlo contigo de manera cómoda - Tamaño: Alto: 24 cm x diámetro: 7cm - Capacidad: 600 ml'
   },
@@ -123,8 +140,25 @@ watch(archivoSeleccionado, (nuevoArchivo) => {
   const modelo = modelos.find(m => m.archivo === nuevoArchivo)
   if (modelo) imagenSeleccionada.value = modelo
 })
+
+// Número de WhatsApp (cámbialo por el tuyo, con código de país sin "+" ni "00")
+const phoneNumber = "573178287981"  
+
+function sendToWhatsApp() {
+  if (!imagenSeleccionada.value) return
+
+  const currentUrl = window.location.href
+  const message = `Hola, estoy interesado en el producto: *${props.titulo}*  
+  Estilo de termo o mug:: *${imagenSeleccionada.value.titulo}*  
+  Enlace: ${currentUrl}`
+
+  const encodedMessage = encodeURIComponent(message)
+  const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+  window.open(url, "_blank")
+}
+
 </script>
 
 <script>
-export default {}
+  export default {}
 </script>

@@ -7,7 +7,13 @@ import CardProducto from '../components/CardProducto.astro';
 import Banner from '../components/Banner.astro';
 import Hade from '../components/Head.astro';
 
-const allPosts = await Astro.glob('../content/productos/*.md')
+
+// const allPosts = await Astro.glob('../content/productos/*.md')
+
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('productos');
+
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -17,14 +23,14 @@ const allPosts = await Astro.glob('../content/productos/*.md')
 	<Hade 
 		title="Entintados"
 		titleSeo="Compra termos y mugs con diseños artísticos exclusivos"
-		description="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
-		image='/images/entintados.jpg'
+		descripcionSeo="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
+		image='images/entintados.jpg'
 		>
 	</Head>
 	<body class="overflow-x-hidden m-0 p-0 min-h-screen">
 		<Header></Header>
 		<Banner
-			url_imagen="/images/banner.jpg"
+			url_imagen="/images/banner.webp"
 			title="<span>Diseño con identidad:</span> <br><span class='font-bold'>arte que se vive</span>">
 		</Banner>
 		<section class="w-full flex justify-center items-center py-10 md:py-20 bg-white">
@@ -45,8 +51,9 @@ const allPosts = await Astro.glob('../content/productos/*.md')
 				{allPosts.map((item) => (
 					
 					<CardProducto 
-						title={item?.frontmatter?.title}
-						image={item?.frontmatter?.image}
+						title={item?.data?.title}
+						image={`/images/productos/${item?.data?.rutaUrl}/${item?.data?.image}`}
+						 url={`/productos/${item.slug}/`}
 					/>
 				))}
 			</div>
