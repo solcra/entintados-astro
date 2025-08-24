@@ -1,0 +1,35 @@
+---
+import { onMount } from "astro/jsx-runtime";
+import Banner from "./Banner.astro";
+---
+
+<div class="embla overflow-hidden w-full">
+  <div class="embla__container flex">
+    <div class="embla__slide min-w-full">
+      <Banner
+        url_imagen="/images/banner.webp"
+        title="<span>Diseño con identidad:</span> <br><span class='font-bold'>arte que se vive</span>">
+      </Banner>
+    </div>
+    <div class="embla__slide min-w-full">
+      <img src="/images/Banner-nuevos-lanzamientos-07.webp" alt="Banner 2" class="w-full h-full object-cover" />
+    </div>
+  </div>
+</div>
+
+<script>
+  import emblaCarousel from "embla-carousel";
+  import Autoplay from "embla-carousel-autoplay";
+
+  // Esperar a que el DOM esté listo
+  document.addEventListener("DOMContentLoaded", () => {
+    const emblaNode = document.querySelector(".embla");
+    if (emblaNode) {
+      const emblaApi = emblaCarousel(emblaNode, {
+        loop: true,
+      }, [
+        Autoplay({ delay: 3000 }) // 3 segundos
+      ]);
+    }
+  });
+</script>
