@@ -1,27 +1,50 @@
 ---
+import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import Hade from '../../components/Head.astro';
+import Header from '../../components/Header.astro';
+import CardProducto from '../../components/CardProducto.astro';
+import Banner from '../../components/Banner.astro';
 
-const posts =  (await getCollection('productos')).sort((a, b) => a.data.order - b.data.order);
-console.log(posts);
-console.log('Posts:', posts);
-console.log(await getCollection('productos'));
+
+const allPosts = await getCollection('productos');
+
 ---
 <html>
     <Hade 
-		title="Entintados - 404"
+		title="Productos - Entintados"
 		titleSeo="Compra termos y mugs con diseños artísticos exclusivos"
 		descripcionSeo="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
 		image='images/entintados.jpg'
 		>
 	</Head>
 <body>
-    <h1>Productos</h1>
-    <ul>car
-        {posts.map((post) => (
-            <li>care
-                <a href={`/productos/${post.slug}`}>{post.data.title}</a>
-            </li>
-        ))}
-    </ul>
+    <body class="overflow-x-hidden m-0 p-0 min-h-screen">
+		<Header></Header>
+        <Banner
+            url_imagen="/images/Banner-nuevos-lanzamientos-07.webp"
+            title="">
+        </Banner>
+        <section class="max-w-7xl mx-auto px-4 py-10">
+			<h1 class="text-3xl font-bold text-center">Nuestros Productos</h1>
+            <section class="w-full flex justify-center items-center py-10 md:py-10 bg-white">
+				<div class="w-[95%] md:w-3/4 text-center px-5 mx-auto">
+					<p class="text-lg md:text-2xl font-light text-gray-900 leading-relaxed max-w-3xl mx-auto">
+					Cada pieza de Entintados lleva la pasión y el amor por crear momentos únicos. 
+					No solo compras un producto, te llevas una experiencia artística que acompaña tu día a día.
+					</p>
+				</div>
+			</section>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+				
+				{allPosts.map((item) => (
+					
+					<CardProducto 
+						title={item?.data?.title}
+						image={`/images/productos/${item?.data?.rutaUrl}/${item?.data?.image}`}
+						 url={`/productos/${item.slug}/`}
+					/>
+				))}
+			</div>
+		</section>
 </html>

@@ -1,7 +1,10 @@
 ---
 import '../styles/global.css';
 // Component Imports
+import Button from '../components/Button.astro';
 import Header from '../components/Header.astro';
+import CardProducto from '../components/CardProducto.astro';
+import Banner from '../components/Banner.astro';
 import Hade from '../components/Head.astro';
 import Slider from '../components/Slider.astro';
 import Testimonios from '../components/Testimonios.astro';
@@ -10,16 +13,25 @@ import LomasVendido from '../components/LomasVendido.astro';
 
 // const allPosts = await Astro.glob('../content/productos/*.md')
 
-
 import { getCollection } from 'astro:content';
-const allPosts = await getCollection('productos');
-const postsJson = JSON.stringify(
-  allPosts.map(post => ({
-    slug: post.slug,
-    data: post.data
-  }))
-);
 
+
+const allPosts = await getCollection('productos');
+
+// Mezclamos aleatoriamente los posts
+function shuffleArray(array) {
+  return array
+    .map((item) => ({ item, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ item }) => item);
+}
+
+// Barajamos y tomamos solo 3
+const randomPosts = shuffleArray(allPosts).slice(0, 3);
+
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
 ---
 
 <html lang="es-CO">
@@ -54,48 +66,16 @@ const postsJson = JSON.stringify(
 					</p>
 				</div>
 			</section>
-			<div id="productos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-
-			<script type="application/json" id="posts-data" set:html={postsJson}></script>
-			<script>
-				// 1. Obtenemos los posts desde el <script type="application/json">
-				const allPosts = JSON.parse(document.getElementById('posts-data').textContent);
-
-				// 2. Función para mezclar aleatoriamente
-				function shuffleArray(array) {
-					return array
-					.map(item => ({ item, sort: Math.random() }))
-					.sort((a, b) => a.sort - b.sort)
-					.map(({ item }) => item);
-				}
-
-				// 3. Tomamos solo 3 productos aleatorios
-				const randomPosts = shuffleArray(allPosts).slice(0, 3);
-
-				// 4. Contenedor donde vamos a renderizar
-				const container = document.getElementById('productos');
-
-				// 5. Generamos el HTML de cada tarjeta
-				randomPosts.forEach(item => {
-					const html = `
-					<a href="/productos/${item.slug}/" class="block hover:scale-105 transition-transform duration-300">
-						<div class="bg-white rounded-2xl shadow-md overflow-hidden">
-						<img 
-							src="/images/productos/${item.data.rutaUrl}/${item.data.image}" 
-							alt="${item.data.title}" 
-							class="w-full aspect-square object-cover"
-						>
-						<h2 class="text-xl font-semibold text-center py-4">${item.data.title}</h2>
-						<div class="px-4 py-2 bg-teal-700 text-white shadow transition text-center">
-							¡Lo quiero!
-						</div>
-						</div>
-					</a>
-					`;
-					container.insertAdjacentHTML('beforeend', html);
-				});
-			</script>
-
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+				
+				{randomPosts.map((item) => (
+					<CardProducto 
+					title={item?.data?.title}
+					image={`/images/productos/${item?.data?.rutaUrl}/${item?.data?.image}`}
+					url={`/productos/${item.slug}/`}
+					/>
+				))}
+			</div>
 			<div class="text-center mt-10">
 				<a href="/productos" class="bg-teal-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-teal-800 transition">
 					Ver todos
@@ -103,6 +83,5 @@ const postsJson = JSON.stringify(
 			</div>
 		</section>
 		<!-- <Testimonios></Testimonios> -->
-
 	</body>
 </html>

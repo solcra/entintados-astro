@@ -1,79 +1,88 @@
 <template>
-  <div class="p-6 max-w-2xl mx-auto">
-    <h1 class="text-2xl font-bold mb-2">{{ props.titulo }}</h1>
+  <div class="p-6 max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <!-- Columna izquierda: Imagen -->
+      <div>
+        <img 
+          v-if="imagenSeleccionada"
+          :src="`/images/productos/${props.rutaUrl}/${imagenSeleccionada.archivo}`" 
+          :alt="imagenSeleccionada.titulo" 
+          class="w-full rounded-xl shadow-md object-cover" 
+        />
+        <img 
+          v-else
+          :src="`/images/productos/${props.rutaUrl}/${props.image}`"
+          alt="Imagen de diseño" 
+          class="w-full rounded-xl shadow-md object-cover" 
+        />
+
+        <!-- Select debajo de la imagen -->
+        <div class="mt-4">
+          <select
+            v-model="archivoSeleccionado"
+            class="border p-2 rounded w-full"
+          >
+            <option value="" disabled>Seleccione una opción</option>
+            <option 
+              v-for="modelo in modelos" 
+              :key="modelo.archivo" 
+              :value="modelo.archivo"
+            >
+              {{ modelo.titulo }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Columna derecha: Info del producto -->
+      <div>
+        <h1 class="text-3xl font-bold mb-4">{{ props.titulo }}</h1>
         
-    <!-- Aquí metes lo que venga de Astro -->
-    <div class="prose mb-6">
-      <slot></slot>
-    </div>
-    <!-- Imagen principal -->
-    <div class="mb-4">
-      <img 
-        v-if="imagenSeleccionada"
-        :src="`/images/productos/${props.rutaUrl}/${imagenSeleccionada.archivo}`" 
-        :alt="imagenSeleccionada.titulo" 
-        class="rounded-xl shadow-md w-full" 
-      />
-      <img 
-        v-else
-        :src="`/images/productos/${props.rutaUrl}/${props.image}`"
-        alt="Imagen de diseño" 
-        class="rounded-xl shadow-md w-full" 
-      />
-    </div>
+        <!-- Texto del slot -->
+        <div class="prose mb-6">
+          <slot></slot>
+        </div>
 
-    <!-- Select -->
-    <div class="mb-4">
-      <select
-        v-model="archivoSeleccionado"
-        class="border p-2 rounded w-full"
-      >
-        <option value="" disabled>Seleccione una opción</option>
-        <option 
-          v-for="modelo in modelos" 
-          :key="modelo.archivo" 
-          :value="modelo.archivo"
+        <!-- Descripción -->
+        <div v-if="imagenSeleccionada?.descripcion" class="mb-4">
+          <h2 class="text-xl font-semibold mb-1">Descripción</h2>
+          <p class="text-gray-700">{{ imagenSeleccionada.descripcion }}</p>
+        </div>
+
+        <!-- Detalles -->
+        <div v-if="imagenSeleccionada?.detalles" class="mb-4">
+          <h2 class="text-xl font-semibold mb-1">Detalles</h2>
+          <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <li 
+              v-for="(detalle, index) in imagenSeleccionada.detalles.split('-')" 
+              :key="index"
+            >
+              {{ detalle.trim() }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Precio -->
+        <div v-if="imagenSeleccionada?.precio" class="mb-6">
+          <h2 class="text-xl font-semibold">
+            Precio: 
+            <span class="text-teal-700 text-2xl font-bold">
+              {{ imagenSeleccionada.precio.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}
+            </span>
+          </h2>
+        </div>
+
+        <!-- Botón WhatsApp -->
+        <button 
+          v-if="imagenSeleccionada"
+          @click="sendToWhatsApp"
+          class="bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-lg w-full md:w-auto transition"
         >
-          {{ modelo.titulo }}
-        </option>
-      </select>
+          📩 Consultar por WhatsApp
+        </button>
+      </div>
     </div>
-
-    <!-- Descripción -->
-    <div v-if="imagenSeleccionada?.descripcion" class="mb-4">
-      <h2 class="text-xl font-semibold">Descripción</h2>
-      <p class="text-gray-700">{{ imagenSeleccionada.descripcion }}</p>
-    </div>
-
-    <!-- Detalles -->
-    <div v-if="imagenSeleccionada?.detalles" class="mb-4">
-      <h2 class="text-xl font-semibold">Detalles</h2>
-      <ul class="list-disc list-inside text-gray-700">
-        <li 
-          v-for="(detalle, index) in imagenSeleccionada.detalles.split('-')" 
-          :key="index"
-        >
-          {{ detalle.trim() }}
-        </li>
-      </ul>
-    </div>
-
-    <!-- Precio -->
-    <div v-if="imagenSeleccionada?.precio" class="mb-4">
-      <h2 class="text-xl font-semibold">Precio: <span class="text-teal-700 text-2xl font-bold">{{ imagenSeleccionada.precio.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) }}</span></h2>
-    </div>
-    <!-- Botón WhatsApp -->
-    <div class="mt-6">
-      <button 
-        v-if="imagenSeleccionada"
-        @click="sendToWhatsApp"
-        class="bg-teal-700 hover:bg-teal-680 text-white px-4 py-2 rounded-lg w-full transition"
-      >
-        📩 Consultar por WhatsApp
-      </button>
-    </div>
-
-  </div>
+</div>
 </template>
 
 <script setup>
