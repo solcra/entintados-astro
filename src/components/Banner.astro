@@ -2,16 +2,18 @@
 export interface Props {
   url_imagen?: string;
   title?: string;
+  alt?: string;
 }
 
-const { url_imagen, title } = Astro.props;
+const { url_imagen, title, alt } = Astro.props;
 ---
 <section class="relative w-full">
   <!-- Imagen -->
   <img 
     src={url_imagen}
-    alt= {title || ""}
+    alt= {alt || ""}
     class="w-full h-auto object-cover"
+    fetchpriority=high
   />
 
   <!-- Texto a la derecha ocupando 50% -->

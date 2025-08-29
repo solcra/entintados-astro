@@ -1,51 +1,189 @@
+---
+import "swiper/css";
+---
 <section class="bg-teal-700 py-12">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-3xl font-bold text-center text-white mb-10">
       Lo que dicen nuestros clientes
     </h2>
 
-    <div class="grid gap-8 md:grid-cols-3">
-      <!-- Testimonio 1 -->
-      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
-        <p class="text-gray-600 mb-4">
-          “El diseño que pedí para mi termo quedó increíble 😍. La impresión tiene una calidad espectacular y llegó muy rápido.”
-        </p>
-        <div class="flex items-center gap-4">
-          <img src="https://i.pravatar.cc/100?img=12" alt="Cliente" class="w-12 h-12 rounded-full border">
-          <div>
-            <p class="font-semibold text-gray-800">Laura G.</p>
-            <p class="text-sm text-gray-500">Medellín, Colombia</p>
+    <!-- Contenedor del slider -->
+    <div class="relative overflow-hidden">
+      <!-- Slider track -->
+      <div id="slider-track" class="flex transition-transform duration-500 ease-in-out select-none">
+        
+        <!-- Testimonio 1 -->
+        <div class="w-full md:w-1/3 flex-shrink-0 p-4">
+          <div class="h-full bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between">
+            <p class="text-gray-600 mb-4 flex-grow">
+              Diseño de Goku para su novio:“Está hermoso, me lo imaginé así, me encantó.”
+            </p>
+            <div class="flex items-center gap-4">
+              <img src="/images/testimonio/testimonio-yuly.webp" alt="Diseño de Goku para su novio" class="w-12 h-12 rounded-full border">
+              <div>
+                <p class="font-semibold text-gray-800">Yuly</p>
+                <p class="text-sm text-gray-500">Itagüí, Colombia</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Testimonio 2 -->
-      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
-        <p class="text-gray-600 mb-4">
-          “Me encantó cómo personalizaron mi mug. Se nota el detalle y la dedicación. Perfecto para regalar 🎁.”
-        </p>
-        <div class="flex items-center gap-4">
-          <img src="https://i.pravatar.cc/100?img=25" alt="Cliente" class="w-12 h-12 rounded-full border">
-          <div>
-            <p class="font-semibold text-gray-800">Andrés M.</p>
-            <p class="text-sm text-gray-500">Bogotá, Colombia</p>
+        <!-- Testimonio 2 -->
+        <div class="w-full md:w-1/3 flex-shrink-0 p-4">
+          <div class="h-full bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between">
+            <p class="text-gray-600 mb-4 flex-grow">
+              Retrato de su gata Tabatha: “¡Que emoción! me encantó, muchas gracias.”
+            </p>
+            <div class="flex items-center gap-4">
+              <img src="/images/testimonio/testimonio-cata.webp" alt="Retrato de su gata Tabatha" class="w-12 h-12 rounded-full border">
+              <div>
+                <p class="font-semibold text-gray-800">Catalina</p>
+                <p class="text-sm text-gray-500">Sabaneta, Colombia</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Testimonio 3 -->
-      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
-        <p class="text-gray-600 mb-4">
-          “La guardiana nocturna es mi favorita 💜. Amo cómo quedó en mi termo, super resistente y con colores vibrantes.”
-        </p>
-        <div class="flex items-center gap-4">
-          <img src="https://i.pravatar.cc/100?img=36" alt="Cliente" class="w-12 h-12 rounded-full border">
-          <div>
-            <p class="font-semibold text-gray-800">Camila R.</p>
-            <p class="text-sm text-gray-500">Cali, Colombia</p>
+        <!-- Testimonio 3 -->
+        <div class="w-full md:w-1/3 flex-shrink-0 p-4">
+          <div class="h-full bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between">
+            <p class="text-gray-600 mb-4 flex-grow">
+              Retrato de su mascota: “Mi sobrino estaba feliz, por que quedó como una gata coqueta.”
+            </p>
+            <div class="flex items-center gap-4">
+              <img src="/images/testimonio/testimonio-carolina.webp" alt="Retrato de su mascota" class="w-12 h-12 rounded-full border">
+              <div>
+                <p class="font-semibold text-gray-800">Carolina</p>
+                <p class="text-sm text-gray-500">Medellín, Colombia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonio 4 -->
+        <div class="w-full md:w-1/3 flex-shrink-0 p-4">
+          <div class="h-full bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between">
+            <p class="text-gray-600 mb-4 flex-grow">
+              libélula: “Me gustó mucho Cathe y la flor quedó de mi color favorito y tú sin saberlo...”
+            </p>
+            <div class="flex items-center gap-4">
+              <img src="/images/testimonio/testimonio-clau.webp" alt="libélula" class="w-12 h-12 rounded-full border">
+              <div>
+                <p class="font-semibold text-gray-800">Claudia</p>
+                <p class="text-sm text-gray-500">Medellín, Colombia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonio 5 -->
+        <div class="w-full md:w-1/3 flex-shrink-0 p-4">
+          <div class="h-full bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between">
+            <p class="text-gray-600 mb-4 flex-grow">
+              tortuga: “Hermosa esa tortuga Cathe.”
+            </p>
+            <div class="flex items-center gap-4">
+              <img src="/images/testimonio/testimonio-carolina.webp" alt="tortuga" class="w-12 h-12 rounded-full border">
+              <div>
+                <p class="font-semibold text-gray-800">Carolina</p>
+                <p class="text-sm text-gray-500">Medellín, Colombia</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('slider-track');
+  let slides = Array.from(track.children);
+  const slideWidth = () => track.children[0].offsetWidth;
+  const perView = () => window.innerWidth >= 768 ? 3 : 1;
+
+  // 👉 Clonamos slides para el bucle infinito
+  slides.forEach(slide => {
+    const clone = slide.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  let index = 0;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let isDragging = false;
+
+  function setSliderPosition() {
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  }
+
+  function nextSlide() {
+    index++;
+    moveToIndex();
+  }
+
+  function moveToIndex() {
+    const width = slideWidth();
+    currentTranslate = -(index * width);
+    prevTranslate = currentTranslate;
+    track.style.transition = "transform 0.5s ease";
+    setSliderPosition();
+
+    // 👉 Reset invisible al inicio
+    if (index >= slides.length) {
+      setTimeout(() => {
+        track.style.transition = "none";
+        index = 0;
+        currentTranslate = 0;
+        prevTranslate = 0;
+        setSliderPosition();
+      }, 500);
+    }
+  }
+
+  // Autoplay cada 3s
+  let autoPlay = setInterval(nextSlide, 3000);
+
+  // ------------------------
+  // Drag con snapping fluido
+  // ------------------------
+  track.addEventListener("mousedown", startDrag);
+  track.addEventListener("touchstart", startDrag);
+
+  track.addEventListener("mousemove", drag);
+  track.addEventListener("touchmove", drag);
+
+  track.addEventListener("mouseup", endDrag);
+  track.addEventListener("mouseleave", endDrag);
+  track.addEventListener("touchend", endDrag);
+
+  function startDrag(e) {
+    isDragging = true;
+    track.style.transition = "none"; // quitar animación mientras arrastro
+    startX = e.pageX || e.touches[0].clientX;
+    clearInterval(autoPlay); // Pausar autoplay
+  }
+
+  function drag(e) {
+    if (!isDragging) return;
+    const x = e.pageX || e.touches[0].clientX;
+    const dx = x - startX;
+    currentTranslate = prevTranslate + dx;
+    setSliderPosition();
+  }
+
+  function endDrag(e) {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const width = slideWidth();
+    const movedBy = currentTranslate - prevTranslate;
+
+    // 👉 Si arrastró más de 1/4 de slide → cambiar índice
+    if (movedBy < -width / 4) index++;
+    if (movedBy > width / 4) index--;
+
+    moveToIndex(); // snap al slide más cercano
+    autoPlay = setInterval(nextSlide, 3000); // Reanudar autoplay
+  }
+</script>

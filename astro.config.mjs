@@ -5,11 +5,31 @@ import mdx from '@astrojs/mdx';
 import vue from '@astrojs/vue';
 import sitemap from '@astrojs/sitemap';
 
+
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://entintados.com.co',
-	integrations: [mdx(), vue(), sitemap()],
+	output: 'static',
+	integrations: [
+		mdx(), 
+		vue(), 
+		sitemap(),
+	],
 	vite: {
-		plugins: [tailwindcss()],
+		build: {
+      		cssCodeSplit: true,
+    	},
+		plugins: [
+			tailwindcss(),
+			{
+				name: 'defer-css',
+				transformIndexHtml(html) {
+					return html.replace(
+						/<link rel="stylesheet" href="(.*?)">/g,
+						`<link rel="stylesheet" href="$1" media="print" onload="this.media='all'">`
+					);
+				},
+			},
+		],
 	}
 });
