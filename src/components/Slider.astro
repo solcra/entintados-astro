@@ -7,14 +7,24 @@ import Banner from "./Banner.astro";
   <div class="embla__container flex">
     <div class="embla__slide min-w-full">
       <Banner
-        url_imagen="/images/banner.webp"
+        url_imagenD="/images/banner_principal.webp"
+        url_imagenM="/images/banner_principal_mobil.webp"
         title="<span>Diseño con identidad:</span> <br><span class='font-bold'>arte que se vive</span>"
         alt="Diseño con identidad arte que se vive"
         >
       </Banner>
     </div>
     <div class="embla__slide min-w-full">
-      <img src="/images/Banner-nuevos-lanzamientos-07.webp" alt="Banner 2" class="w-full h-full object-cover" />
+      <picture>
+        <source srcset="/images/banner_mobil.webp" media="(max-width: 768px)">
+        <img src="/images/banner-termos.webp" alt="Banner Entintados" class="w-full h-full object-cover">
+      </picture>
+    </div>
+    <div class="embla__slide min-w-full">
+      <picture>
+        <source srcset="/images/mobile-banner.webp" media="(max-width: 768px)">
+        <img src="/images/banner_mugs_y_vasos.webp" alt="Banner Entintados" class="w-full h-full object-cover">
+      </picture>
     </div>
   </div>
 </div>
@@ -23,14 +33,13 @@ import Banner from "./Banner.astro";
   import emblaCarousel from "embla-carousel";
   import Autoplay from "embla-carousel-autoplay";
 
-  // Esperar a que el DOM esté listo
   document.addEventListener("DOMContentLoaded", () => {
     const emblaNode = document.querySelector(".embla");
     if (emblaNode) {
       const emblaApi = emblaCarousel(emblaNode, {
         loop: true,
       }, [
-        Autoplay({ delay: 3000 }) // 3 segundos
+        Autoplay({ delay: 4000 })
       ]);
     }
   });

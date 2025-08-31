@@ -11,3 +11,9 @@ astro-slot strong {
   padding-top: 15px;
   display: block;
 }
+h1 {
+  line-height: 3rem;
+  span.font-bold {
+    font-size: 0.8em;
+  }
+}

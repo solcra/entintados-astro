@@ -1,27 +1,31 @@
 ---
 export interface Props {
-  url_imagen?: string;
+  url_imagenD?: string;
+  url_imagenM?: string;
   title?: string;
   alt?: string;
 }
 
-const { url_imagen, title, alt } = Astro.props;
+const { url_imagenD, url_imagenM, title, alt } = Astro.props;
 ---
 <section class="relative w-full">
-  <!-- Imagen -->
-  <img 
-    src={url_imagen}
-    alt= {alt || ""}
-    class="w-full h-auto object-cover"
-    fetchpriority=high
-  />
-
-  <!-- Texto a la derecha ocupando 50% -->
-  <div class="absolute inset-0 flex items-center justify-end">
-    <div class="w-1/2 flex items-center justify-center p-5">
-      <h1 class="text-2xl md:text-6xl text-black text-center leading-tight"
-        set:html={title || ""}>
-      </h1>
+  <picture>
+    <source srcset={url_imagenM} media="(max-width: 768px)" />
+    <!-- Imagen -->
+    <img 
+      src={url_imagenD}
+      alt= {alt || ""}
+      class="w-full h-auto object-cover"
+      fetchpriority=high
+    />
+  </picture>
+  {title && (
+    <div class="absolute inset-0 flex items-center justify-end md:justify-center">
+      <div class="w-1/2 flex items-center justify-end md:justify-center p-5">
+        <h1 class="text-2xl md:text-6xl text-black text-center leading-tight"
+          set:html={title}>
+        </h1>
+      </div>
     </div>
-  </div>
+  )}
 </section>

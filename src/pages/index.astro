@@ -16,7 +16,9 @@ const allPosts = await getCollection('productos');
 const postsJson = JSON.stringify(
   allPosts.map(post => ({
     slug: post.slug,
-    data: post.data
+    title: post.data.title,
+    image: post.data.image,
+	rutaUrl: post.data.rutaUrl,
   }))
 );
 
@@ -32,7 +34,8 @@ const postsJson = JSON.stringify(
 	</Head>
 	<body class="overflow-x-hidden m-0 p-0 min-h-screen">
 		<Header></Header>
-		<Slider client:idle></Slider>
+		<Slider client:idle>			
+		</Slider>
 		<section class="w-full flex justify-center items-center py-10 md:py-20 bg-white">
 			<div class="w-[90%] md:w-1/2 text-center px-5 mx-auto">
 				<p class="text-2xl md:text-4xl font-light text-gray-900 leading-snug">
@@ -81,11 +84,11 @@ const postsJson = JSON.stringify(
 					<a href="/productos/${item.slug}/" class="block hover:scale-105 transition-transform duration-300">
 						<div class="bg-white rounded-2xl shadow-md overflow-hidden">
 						<img 
-							src="/images/productos/${item.data.rutaUrl}/${item.data.image}" 
-							alt="${item.data.title}" 
+							src="/images/productos/${item.rutaUrl}/${item.image}" 
+							alt="${item.title}" 
 							class="w-full aspect-square object-cover"
 						>
-						<h2 class="text-xl font-semibold text-center py-4">${item.data.title}</h2>
+						<h2 class="text-xl font-semibold text-center py-4">${item.title}</h2>
 						<div class="px-4 py-2 bg-teal-700 text-white shadow transition text-center">
 							¡Lo quiero!
 						</div>

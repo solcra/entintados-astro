@@ -3,6 +3,7 @@ import '../styles/global.css';
 // Component Imports
 import Hade from '../components/Head.astro';
 import Header from '../components/Header.astro';
+import Banner from '../components/Banner.astro';
 
 ---
 <html lang="es-CO">
@@ -15,6 +16,11 @@ import Header from '../components/Header.astro';
 	</Head>
 	<body class="overflow-x-hidden m-0 p-0 min-h-screen">
         <Header></Header>
+        <Banner     
+            url_imagenD="/images/banner_contacto_pc.webp"
+            url_imagenM="/images/banner_contacto_mobil.webp"
+            alt="Contáctanos">
+		</Banner>
         <section class="w-full flex justify-center items-center py-20 bg-white px-4 md:px-0">
             <div class="max-w-4xl text-center md:text-left">
                 
