@@ -25,7 +25,105 @@ const {
   descripcionSeo,
   order,
 } = entry.data;
-
+const faqs = [
+  {
+    question: "¿Qué métodos de pago manejamos?",
+    answer: `
+      Aceptamos:<br/>
+      • Transferencia bancaria (Bancolombia)<br/>
+      • Nequi - Pago inmediato y seguro<br/>
+      • Todos los pagos son 100% seguros y verificados
+    `
+  },
+  {
+    question: "¿Cómo funciona el envío en Colombia?",
+    answer: `
+      Realizamos envíos a toda Colombia con Interrapidísimo, empresa líder en mensajería nacional con cobertura garantizada y seguimiento en tiempo real.
+    `
+  },
+  {
+    question: "¿Cuánto cuesta el envío a mi ciudad?",
+    answer: `
+      El costo se calcula según tu ubicación usando el cotizador oficial de Interrapidísimo: 
+      <a href="https://interrapidisimo.com/cotiza-tu-envio/" target="_blank" class="text-blue-600 underline">Cotizar aquí</a><br/><br/>
+      Proceso transparente:<br/>
+      • Si el costo real es menor → Te devolvemos la diferencia<br/>
+      • Si el costo real es mayor → Te contactamos antes del envío<br/>
+      • Opción: Puedes pagar el envío contraentrega al recibir tu pedido
+    `
+  },
+  {
+    question: "¿Cuánto demora la entrega de mi termo o mugs personalizado?",
+    answer: `
+      Diseños del catálogo: 5-7 días hábiles después del pago confirmado.<br/>
+      Diseños 100% personalizados/nuevas ilustraciones: 7-15 días hábiles.<br/><br/>
+      Tiempo incluye proceso de sublimación de alta calidad + envío nacional.
+    `
+  },
+  {
+    question: "¿Qué garantía tienen los termos y mugs personalizados?",
+    answer: `
+      Garantía completa por defectos de fabricación o sublimación. No aplica garantía por:<br/>
+      • Mal uso del producto<br/>
+      • Uso en congelador o microondas (termos)<br/>
+      • Daños por caídas o golpes
+    `
+  },
+  {
+    question: "¿Cómo cuidar correctamente mi termo personalizado?",
+    answer: `
+      SÍ PUEDES:<br/>
+      • Lavar con jabón lavavajillas<br/>
+      • Usar los mugs cerámicos (6oz y 11oz) en microondas<br/>
+      • Secar al aire libre<br/><br/>
+      NUNCA HAGAS:<br/>
+      • Usar termos en congelador o microondas<br/>
+      • Productos de limpieza abrasivos o corrosivos<br/>
+      • Lavavajillas (puede dañar la sublimación)<br/>
+      • Remojo prolongado con productos químicos
+    `
+  },
+  {
+    question: "¿Puedo enviar mi propio diseño para personalizar?",
+    answer: `
+      ¡Sí! Aceptamos tus diseños personalizados. Catherine, nuestra artista, puede:<br/>
+      • Adaptar tu idea a arte profesional<br/>
+      • Crear ilustraciones desde cero<br/>
+      • Combinar elementos de nuestro catálogo con tus conceptos
+    `
+  },
+  {
+    question: "¿Qué tamaños de termos y mugs manejan?",
+    answer: `
+      Termos:<br/>
+      • 500 ml (termo botella)<br/>
+      • 600 ml (termo con gancho)<br/>
+      • 750 ml (termo tapa acrílica/pitillo ajustable)<br/><br/>
+      Mugs:<br/>
+      • 6 oz (mug tintico tradicional)<br/>
+      • 11 oz (mug clásico)<br/>
+      • 12 oz (mug peltre vintage)
+    `
+  },
+  {
+    question: "¿Cómo puedo contactarlos para dudas específicas?",
+    answer: `
+      • WhatsApp: 3178287981<br/>
+      • DM Instagram: @catheisaza<br/>
+      • DM Facebook: Entintados Catherine Isaza Rodríguez
+    `
+  },
+  {
+    question: "¿Ofrecen descuentos por pedidos grandes/corporativos?",
+    answer: `
+      ¡Sí! Manejamos precios especiales para:<br/>
+      • Pedidos de 20+ unidades<br/>
+      • Eventos corporativos<br/>
+      • Regalos empresariales<br/>
+      • Conmemorativos especiales
+    `
+  }
+];
 ---
 <html lang="es-CO">
 	<Hade 
@@ -34,9 +132,98 @@ const {
     descripcionSeo={descripcionSeo}
 		image=`images/productos/${rutaUrl}/${image}`
 		>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué métodos de pago manejamos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Aceptamos: Transferencia bancaria (Bancolombia), Nequi - Pago inmediato y seguro, todos los pagos son 100% seguros y verificados."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo funciona el envío en Colombia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Realizamos envíos a toda Colombia con Interrapidísimo, empresa líder en mensajería nacional con cobertura garantizada y seguimiento en tiempo real."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta el envío a mi ciudad?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El costo se calcula según tu ubicación usando el cotizador oficial de Interrapidísimo. Si el costo real es menor, devolvemos la diferencia; si es mayor, te contactamos antes del envío. También puedes pagar contraentrega."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto demora la entrega de mi termo o mugs personalizado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Diseños del catálogo: 5-7 días hábiles. Diseños personalizados/nuevas ilustraciones: 7-15 días hábiles. Incluye proceso de sublimación de alta calidad + envío nacional."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué garantía tienen los termos y mugs personalizados?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Garantía por defectos de fabricación o sublimación. No aplica a mal uso, uso en congelador/microondas o daños por caídas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo cuidar correctamente mi termo personalizado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí puedes: lavar con jabón lavavajillas, usar mugs en microondas, secar al aire. Nunca hagas: usar termos en congelador/microondas, productos abrasivos, lavavajillas o remojo prolongado."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo enviar mi propio diseño para personalizar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, aceptamos diseños personalizados. Catherine puede adaptar tu idea, crear ilustraciones desde cero o combinar elementos del catálogo con tus conceptos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué tamaños de termos y mugs manejan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Termos: 500 ml, 600 ml, 750 ml. Mugs: 6 oz, 11 oz, 12 oz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo puedo contactarlos para dudas específicas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "WhatsApp: 3178287981, Instagram: @catheisaza, Facebook: Entintados Catherine Isaza Rodríguez."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Ofrecen descuentos por pedidos grandes/corporativos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, tenemos precios especiales para pedidos de 20+ unidades, eventos corporativos, regalos empresariales y conmemorativos."
+            }
+          }
+        ]
+      }
+    </script>
 	</Head>
 	<body class="overflow-x-hidden m-0 p-0 min-h-screen">
-    <Header></Header>
+    <Header>
+    </Header>
       <ProductSelector
         client:load
         titulo={title}
@@ -44,5 +231,21 @@ const {
         rutaUrl={rutaUrl}
         image={image}
       ><Content /></ProductSelector>
+      <section class="max-w-3xl mx-auto px-4 py-10">
+        <h2 class="text-3xl font-bold text-center mb-8 text-teal-700">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          {faqs.map((faq, index) => (
+            <details class="group border border-teal-700 rounded-lg">
+              <summary class="flex justify-between items-center font-medium cursor-pointer bg-teal-700 text-white px-4 py-3 rounded-lg">
+                {faq.question}
+                <span class="ml-2 transition group-open:rotate-45">+</span>
+              </summary>
+              <div class="px-4 py-3 text-gray-700 bg-white rounded-lg">
+                <p set:html={faq.answer}></p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
   </body>
 </html>
