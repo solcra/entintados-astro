@@ -17,3 +17,8 @@ h1 {
     font-size: 0.8em;
   }
 }
+@media (max-width: 767px) {
+  h1 {
+    line-height: 2rem;
+  }
+}

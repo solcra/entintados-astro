@@ -5,6 +5,7 @@ import Hade from '../../components/Head.astro';
 import Header from '../../components/Header.astro';
 import CardProducto from '../../components/CardProducto.astro';
 import Banner from '../../components/Banner.astro';
+import Footer from '../../components/Footer.astro';
 
 
 const allPosts = await getCollection('productos');
@@ -13,8 +14,8 @@ const allPosts = await getCollection('productos');
 <html>
     <Hade 
 		title="Productos - Entintados"
-		titleSeo="Compra termos y mugs con diseños artísticos exclusivos"
-		descripcionSeo="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
+		titleSeo="Catálogo de termos y mug personalizados ilustrados | Productos Entintados"
+		descripcionSeo="Catálogo completo de termos y mugs personalizados con diseños artísticos únicos. Cada producto es una pieza única creada especialmente para ti. Calidad premium y diseños inolvidables."
 		image='images/entintados.jpg'
 		>
 	</Head>
@@ -50,4 +51,6 @@ const allPosts = await getCollection('productos');
 				))}
 			</div>
 		</section>
+		<Footer></Footer>
+	</body>
 </html>

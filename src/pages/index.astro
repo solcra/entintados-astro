@@ -6,6 +6,7 @@ import Hade from '../components/Head.astro';
 import Slider from '../components/Slider.astro';
 import Testimonios from '../components/Testimonios.astro';
 import LomasVendido from '../components/LomasVendido.astro';
+import Footer from '../components/Footer.astro';
 import "swiper/css";
 
 // const allPosts = await Astro.glob('../content/productos/*.md')
@@ -27,8 +28,8 @@ const postsJson = JSON.stringify(
 <html lang="es-CO">
 	<Hade 
 		title="Entintados"
-		titleSeo="Compra termos y mugs con diseños artísticos exclusivos"
-		descripcionSeo="Personaliza tu rutina con termos y mugs ilustrados en tinta. Animales, naturaleza y arte original para regalar o disfrutar cada día."
+		titleSeo="Termos y mugs personalizados con diseños únicos | Entintados Colombia "
+		descripcionSeo="Termos y mugs con diseños artísticos personalizados en Colombia. Catherine crea piezas únicas que reflejan tu personalidad. Calidad premium y envíos nacionales. ¡Solicita tu diseño exclusivo!"
 		image='images/entintados.jpg'
 		>
 	</Head>
@@ -106,6 +107,6 @@ const postsJson = JSON.stringify(
 			</div>
 		</section>
 		<Testimonios></Testimonios>
-
+		<Footer></Footer>
 	</body>
 </html>

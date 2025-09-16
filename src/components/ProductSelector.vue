@@ -18,15 +18,19 @@
 
         <!-- Select debajo de la imagen -->
         <div class="mt-4">
+          <label for="modeloSelect" class="block text-sm font-medium text-gray-700 mb-1">
+            Selecciona un modelo
+          </label>
           <select
+            id="modeloSelect" 
             v-model="archivoSeleccionado"
             class="border p-2 rounded w-full"
           >
             <option value="" disabled>Seleccione una opción</option>
             <option 
               v-for="modelo in modelos" 
-              :key="modelo.archivo" 
-              :value="modelo.archivo"
+              :key="modelo.modle" 
+              :value="modelo.modle"
             >
               {{ modelo.titulo }}
             </option>
@@ -86,7 +90,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 const props = defineProps({
   titulo: String,
@@ -99,6 +103,7 @@ const modelos = [
   { 
     titulo: 'Termo tapa acrílica', 
     archivo: 'termo-tapa-acrilica.webp',
+    modle: 'termo-tapa-acrilica',
     precio: 40000, 
     descripcion: 'Hecha en acero inoxidable de alta calidad, ideal para mantenerte hidratado durante tus entrenamientos en el gimnasio, clases de yoga matutinas... y seguir brillando con estilo único en cada actividad.', 
     detalles: 'Resiste bebidas frías y/o calientes. No apto para usar en el congelador - Su tapa plástica no solo asegura un cierre hermético, sino que también añade un toque de elegancia y modernidad a tu termo. - Tamaño: Alto: 25,5cm x diámetro: 7cm  - Capacidad: 750 ml' 
@@ -106,6 +111,7 @@ const modelos = [
   { 
     titulo: 'Termo con pitillo', 
     archivo: 'termo-pitillo-ajustable.webp',
+    modle: 'termo-pitillo-ajustable',
     precio: 41000,
     descripcion: 'Hecho en aluminio de alta calidad, ideal para mantener tus bebidas favoritas a la temperatura perfecta durante tus actividades diarias, entrenamientos matutinos... y seguir conquistando cada momento con energía y estilo.' ,
     detalles: 'Resiste bebidas frías, conservándolas frescas. No apto para usar en el congelador - Tapa y pitillo plásticos - Su pitillo se abre y cierra fácilmente - Tiene un sistema de agarre muy práctico que te permite llevarlo contigo de manera cómoda - Tamaño: Alto: 24 cm x diámetro: 7cm - Capacidad: 600 ml'
@@ -113,6 +119,7 @@ const modelos = [
   { 
     titulo: 'Termo con gancho', 
     archivo: 'termo-con-gancho.webp',
+    modle: 'termo-con-gancho',
     precio: 30000,
     descripcion: 'Hecho en material premium (aluminio) que conserva la temperatura perfecta, porque los mejores momentos se viven mejor hidratado y con estilo.' ,
     detalles: 'Resiste bebidas calientes y/o frías. No apto para usar en el congelador - Con gancho para facilitar su transporte - Tapón con goma y de rosca - Tamaño: Alto: 21cm x diámetro: 7cm - Capacidad: 600 ml'
@@ -120,6 +127,7 @@ const modelos = [
   { 
     titulo: 'Mug tintico', 
     archivo: 'mug-tintico.webp',
+    modle: 'mug-tintico',
     precio: 20000,
     descripcion: 'Hecho en cerámica de alta calidad. Ideal para "tintear" con chismecito incluido, esas tardes de café con amigos... y seguir disfrutando cada sorbo con la paciencia y sabiduría que solo una buena conversación puede dar. ' ,
     detalles: 'Resiste bebidas calientes y/o frías. Apto para microondas - Tamaño: Alto: 5, 2 cm x diámetro: 8 cm - Capacidad: 6 onzas'
@@ -127,6 +135,7 @@ const modelos = [
   { 
     titulo: 'Mug peltre', 
     archivo: 'mug-peltre.webp',
+    modle: 'mug-peltre',
     precio: 38000,
     descripcion: 'Hecho en acero esmaltado con acabado plateado, ideal para disfrutar tu café matutino con estilo, esas tardes de lectura relajante... y seguir apreciando cada momento con la elegancia clásica que nunca pasa de moda. Con un buen cuidado tendrás mug para rato, y si no... ¡los golpecitos le darán personalidad única!',
     detalles:'Resiste bebidas frías y/o calientes. No apto para microondas y lavavajillas - Lavar antes del primer uso - Evitar esponjas abrasivas para preservar la impresión sublimada - Tamaño: Alto: 8 cm x 8 cm de diámetro - Capacidad: 11 onzas'
@@ -134,6 +143,7 @@ const modelos = [
   { 
     titulo: 'Termo botella blanca', 
     archivo: 'termo-botella-blanca.webp',
+    modle: 'termo-botella-blanca',
     precio: 42000,
     descripcion: 'Hecha en acero inoxidable de doble pared, ideal para mantenerte hidratado durante largas jornadas de trabajo, sesiones de estudio nocturnas... y seguir conquistando cada desafío. Perfecto para la oficina, universidad, hogar o llevar en tu bolso favorito.' ,
     detalles: 'Doble pared en acero Inoxidable, con aislamiento térmico que mantiene la bebida fría entre 8-10 h aprox o caliente 3-4 h aprox (puede variar dependiendo condiciones climáticas) - Tapa rosca con interior plástico - Tamaño: Alto: 25 cm x diámetro: 5.5 cm - Capacidad: 500 ml'
@@ -141,6 +151,7 @@ const modelos = [
   { 
     titulo: 'Termo para carro', 
     archivo: 'termo-para-carro.webp',
+    modle: 'termo-para-carro',
     precio: 48000,
     descripcion: 'Hecho en acero inoxidable de alta calidad, ideal para disfrutar tu café matutino camino al trabajo, esos viajes largos por carretera... y seguir conquistando cada kilómetro con la energía perfecta.',
     detalles: 'Resiste bebidas frías y/o calientes. No apto para usar en el congelador - Tapa plástica a presión - Con base plástica, ideal para usar y llevar en el carro (portavasos) - Tamaño: Alto: 15 cm x diámetro: 8,5 cm - Capacidad: 450 ml'
@@ -148,6 +159,7 @@ const modelos = [
   { 
     titulo: 'Mug blanco 11 onzas', 
     archivo: 'mug-blanco-11-onzas.webp',
+    modle: 'mug-blanco-11-onzas',
     precio: 22000,
     descripcion: 'Hecho en cerámica, ideal para el café en la oficina, hacer una pausa…y seguir.', 
     detalles: 'Resiste bebidas calientes y/o frías. Apto para microondas - Tamaño: Alto: 9,5 cm X diámetro: 8 cm - Capacidad: 11 onzas'
@@ -171,11 +183,36 @@ const modelos = [
 const imagenSeleccionada = ref(null)   // 👈 arranca vacío
 const archivoSeleccionado = ref('')
 
-// Cuando cambie el select, actualizamos la imagen
+// 👉 Cuando cambie el select, actualizamos la imagen y la URL
 watch(archivoSeleccionado, (nuevoArchivo) => {
-  const modelo = modelos.find(m => m.archivo === nuevoArchivo)
-  if (modelo) imagenSeleccionada.value = modelo
+  console.log("Archivo seleccionado:", nuevoArchivo)
+  const modelo = modelos.find(m => m.modle === nuevoArchivo)
+  
+  console.log("Archivo seleccionado:", modelo)
+  if (modelo) {
+    imagenSeleccionada.value = modelo
+
+    // Actualizar parámetro en la URL sin recargar la página
+    const url = new URL(window.location.href)
+    url.searchParams.set("modelo", nuevoArchivo)
+    window.history.replaceState({}, "", url)
+  }
 })
+
+// 👉 Leer desde la URL si ya viene ?modelo=...
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search)
+  const modle = params.get("modelo")
+  if (modle) {
+    const modelo = modelos.find(m => m.modle === modle)
+    console.log("Modelo desde URL:", modelo)
+    if (modelo) {
+      archivoSeleccionado.value = modelo.modle
+      imagenSeleccionada.value = modelo
+    }
+  }
+})
+
 
 // Número de WhatsApp (cámbialo por el tuyo, con código de país sin "+" ni "00")
 const phoneNumber = "573178287981"  
